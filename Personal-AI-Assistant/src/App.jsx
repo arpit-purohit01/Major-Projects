@@ -1,13 +1,13 @@
 import React, {useContext} from "react"
-import { dataContext } from "./context/UserContext.jsx";
+import { dataContext } from "./context/UserContext";
 function App() {
-  let {speak} = useContext(dataContext);
-  speak("hello bhaisahab!! kya baat ho gyi");
+  let {recognition} = useContext(dataContext);
+  // speak("hello bhaisahab!! kya baat ho gyi");
   return (
     <>
       <div className="blur">
         <div className='intro'>Start speaking to your own Virtual Assistant Friday</div>
-        <button>Start Speaking</button>
+        <button onClick={()=>recognition.start()}>Start Speaking</button>
       </div>
     </>
   )
