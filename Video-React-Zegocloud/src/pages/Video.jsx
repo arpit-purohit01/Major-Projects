@@ -4,17 +4,20 @@ import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 function Video() {
     const {roomID} = useParams()
     const myMeeting = async (element) => {
-        const appID = 29415006;
-        const serverSecret = "d0ef68905d9dcd5b2e54c4f4c0bfd4b8";
-        // const kitToken = ZegoUIKitPrebuilt.generate
+        const appID = 1960998235;
+        const serverSecret = "677f05d4b7e8fbf94492c039386b4bdd";
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, Date.now().toString(), "Arpit-Purohit");
         const zp = ZegoUIKitPrebuilt.create(kitToken);
+
+        const currentDomain = window.location.origin;
+        const generatedShareLink = `${currentDomain}/room/${roomID}`;
+
         zp.joinRoom({
             container: element,
             sharedLinks: [  
                 {
                     name: 'Copy link',
-                    url: `http://localhost:5173/video/${roomID}`,
+                    url: generatedShareLink,
                 },
             ],
             scenario: {
