@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
+
 function Video() {
     const {roomID} = useParams()
     const myMeeting = async (element) => {
@@ -12,7 +13,14 @@ function Video() {
             return;
         }
 
-        const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, Date.now().toString(), "Arpit-Purohit");
+        const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
+            appID, 
+            serverSecret, 
+            roomID, 
+            Date.now().toString(), 
+            "Guest User"
+        );
+        
         const zp = ZegoUIKitPrebuilt.create(kitToken);
 
         const currentDomain = window.location.origin;
@@ -29,12 +37,22 @@ function Video() {
             scenario: {
                 mode: ZegoUIKitPrebuilt.GroupCall,
             },
+            showScreenSharingButton: true,
+            showUserList: true,
+            showAudioVideoSettingsButton: true,
+            showTextChat: true,
+            showPreJoinView: true,
+            branding: {
+                logoURL: 'https://cdn-icons-png.flaticon.com/512/3214/3214734.png',
+            },
+            theme: 'Dark', // Ensuring professional dark theme
         });
     }
+
     return (
-        <>
-            <div ref={myMeeting} />
-        </>
+        <div className="video-container" style={{ width: '100vw', height: '100vh', background: '#0f172a' }}>
+            <div ref={myMeeting} style={{ width: '100%', height: '100%' }} />
+        </div>
     )
 }
 
