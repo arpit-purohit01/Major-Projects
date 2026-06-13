@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+//connect
 function Home() {
     let [input, setInput] = useState("");
     let navigate = useNavigate();
